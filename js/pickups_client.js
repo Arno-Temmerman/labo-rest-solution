@@ -25,6 +25,13 @@ export default class PickupsClient {
     }
 
     getPickups() {
-        throw new Error('Method not implemented yet.');
+        return fetch(`${this.#baseUri}/pickups`)
+            .then(response => this.checkStatus(response))
+            .then(response => response.json())
+            .then(json => json.map(pickup_json => new Pickup(pickup_json)))
+            .catch(error => {
+                console.error('Error getting pickups:', error);
+                throw error;
+            });
     }
 }

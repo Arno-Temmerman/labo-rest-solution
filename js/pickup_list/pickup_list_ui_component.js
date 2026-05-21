@@ -18,6 +18,18 @@ export default class PickupListUiComponent {
     }
 
     #toHTML(pickups) {
-        throw new Error('Method not implemented yet.');
+        const pickupsElement = document.getElementById('pickups');
+        pickupsElement.innerHTML = '';
+        
+        pickups.forEach(pickup => {
+            const strHTML = `
+            <div class="card mb-3">
+                <h6 class="card-header">${pickup.date}</h6>
+                <div class="card-body">
+                    <p class="card-text">${pickup.type}</p>
+                </div>
+            </div>`;
+            pickupsElement.insertAdjacentHTML('beforeend', strHTML);
+        });
     }
 }

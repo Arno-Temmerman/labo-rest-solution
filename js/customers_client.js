@@ -65,6 +65,16 @@ export default class CustomersClient {
     }
 
     deleteCustomer(id) {
-        throw new Error('Method not implemented yet.');
+        const uri = `${this.#baseUri}/customers/${id}`;
+
+        const requestOptions = {
+            method: 'DELETE'
+        };
+
+        return fetch(uri, requestOptions)
+            .then(response => this.checkStatus(response))
+            .catch(error => {
+                console.error('Error deleting customer:', error);
+            });
     }
 }
